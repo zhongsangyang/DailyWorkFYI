@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.QRTZ_MYORDERMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.QRTZ_MYORDER">
+    <id column="recodId" jdbcType="INTEGER" property="recodid" />
+    <result column="toSomeOne" jdbcType="VARCHAR" property="tosomeone" />
+    <result column="messageDescription" jdbcType="VARCHAR" property="messagedescription" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="mailaccount" jdbcType="VARCHAR" property="mailaccount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    recodId, toSomeOne, messageDescription, createTime, mailaccount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from QRTZ_MYORDER
+    where recodId = #{recodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from QRTZ_MYORDER
+    where recodId = #{recodid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.QRTZ_MYORDER">
+    insert into QRTZ_MYORDER ( toSomeOne, messageDescription,
+      createTime, mailaccount)
+    values ( #{tosomeone,jdbcType=VARCHAR}, #{messagedescription,jdbcType=VARCHAR},
+      #{createtime,jdbcType=TIMESTAMP}, #{mailaccount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.QRTZ_MYORDER">
+    insert into QRTZ_MYORDER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recodid != null">
+        recodId,
+      </if>
+      <if test="tosomeone != null">
+        toSomeOne,
+      </if>
+      <if test="messagedescription != null">
+        messageDescription,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="mailaccount != null">
+        mailaccount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recodid != null">
+        #{recodid,jdbcType=INTEGER},
+      </if>
+      <if test="tosomeone != null">
+        #{tosomeone,jdbcType=VARCHAR},
+      </if>
+      <if test="messagedescription != null">
+        #{messagedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailaccount != null">
+        #{mailaccount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.QRTZ_MYORDER">
+    update QRTZ_MYORDER
+    <set>
+      <if test="tosomeone != null">
+        toSomeOne = #{tosomeone,jdbcType=VARCHAR},
+      </if>
+      <if test="messagedescription != null">
+        messageDescription = #{messagedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mailaccount != null">
+        mailaccount = #{mailaccount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where recodId = #{recodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.QRTZ_MYORDER">
+    update QRTZ_MYORDER
+    set toSomeOne = #{tosomeone,jdbcType=VARCHAR},
+      messageDescription = #{messagedescription,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      mailaccount = #{mailaccount,jdbcType=VARCHAR}
+    where recodId = #{recodid,jdbcType=INTEGER}
+  </update>
+</mapper>

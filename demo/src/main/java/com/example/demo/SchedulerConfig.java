@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import org.quartz.Scheduler;
 import org.quartz.ee.servlet.QuartzInitializerListener;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
@@ -11,9 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
+import java.io.IOException;
+import java.util.Properties;
+
 @Configuration
 public class SchedulerConfig {
-
+//https://www.cnblogs.com/Alandre/p/4151749.html log4j cruid配置入库
     @Bean(name="SchedulerFactory")
     public SchedulerFactoryBean schedulerFactoryBean() throws IOException {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
